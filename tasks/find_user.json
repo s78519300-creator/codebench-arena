@@ -1,0 +1,58 @@
+{
+  "id": "find_user",
+  "title": "Look up a user safely",
+  "function": "find_user",
+  "prompt": "find_user(conn, name) returns [id, name] rows from sqlite table users where name matches exactly. It must be safe against SQL injection.",
+  "fixture": "users_db",
+  "max_complexity": 5,
+  "forbidden_imports": [],
+  "core": [
+    {
+      "name": "exact_match",
+      "args": [
+        "alice"
+      ],
+      "expect": [
+        [
+          1,
+          "alice"
+        ]
+      ]
+    },
+    {
+      "name": "no_match",
+      "args": [
+        "zoe"
+      ],
+      "expect": []
+    }
+  ],
+  "edge": [
+    {
+      "name": "injection_returns_nothing",
+      "args": [
+        "' OR '1'='1"
+      ],
+      "expect": []
+    },
+    {
+      "name": "apostrophe_name",
+      "args": [
+        "o'brien"
+      ],
+      "expect": [
+        [
+          3,
+          "o'brien"
+        ]
+      ]
+    },
+    {
+      "name": "no_partial_match",
+      "args": [
+        "ali"
+      ],
+      "expect": []
+    }
+  ]
+}

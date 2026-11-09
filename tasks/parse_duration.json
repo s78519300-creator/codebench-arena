@@ -1,0 +1,61 @@
+{
+  "id": "parse_duration",
+  "title": "Parse duration strings",
+  "function": "parse_duration",
+  "prompt": "Convert strings such as '1h30m' to seconds. Units: d, h, m, s, in that order. Raise ValueError on invalid input. Do not use eval.",
+  "max_complexity": 8,
+  "forbidden_imports": [],
+  "core": [
+    {
+      "name": "hours_minutes",
+      "args": [
+        "1h30m"
+      ],
+      "expect": 5400
+    },
+    {
+      "name": "seconds",
+      "args": [
+        "45s"
+      ],
+      "expect": 45
+    },
+    {
+      "name": "all_units",
+      "args": [
+        "1d2h3m4s"
+      ],
+      "expect": 93784
+    }
+  ],
+  "edge": [
+    {
+      "name": "empty_raises",
+      "args": [
+        ""
+      ],
+      "raises": "ValueError"
+    },
+    {
+      "name": "garbage_raises",
+      "args": [
+        "abc"
+      ],
+      "raises": "ValueError"
+    },
+    {
+      "name": "bare_number_raises",
+      "args": [
+        "10"
+      ],
+      "raises": "ValueError"
+    },
+    {
+      "name": "wrong_order_raises",
+      "args": [
+        "5s1h"
+      ],
+      "raises": "ValueError"
+    }
+  ]
+}

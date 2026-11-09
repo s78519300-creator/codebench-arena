@@ -1,0 +1,33 @@
+{
+  "id": "reverse_words",
+  "title": "Reverse word order (calibration control)",
+  "function": "reverse_words",
+  "prompt": "Return the words of a string in reverse order, separated by one space.",
+  "max_complexity": 3,
+  "forbidden_imports": [],
+  "core": [
+    {
+      "name": "two_words",
+      "args": [
+        "hello world"
+      ],
+      "expect": "world hello"
+    }
+  ],
+  "edge": [
+    {
+      "name": "extra_spaces",
+      "args": [
+        "  a   b "
+      ],
+      "expect": "b a"
+    },
+    {
+      "name": "empty",
+      "args": [
+        ""
+      ],
+      "expect": ""
+    }
+  ]
+}
